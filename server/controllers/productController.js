@@ -68,33 +68,27 @@ export const deleteProduct = async (req, res) => {
 
 // Utility function to determine if a bid is live, future, or past
 const determineBidStatus = (startbidTime, endbidTime, date) => {
-    if (!startbidTime || !endbidTime || !date) {
-        return 'unknown'; // Handle missing data
-    }
+    if (!startbidTime || !endbidTime || !date) return 'unknown';
 
-    // Convert current UTC time to IST
     const currentTime = convertUtcToIst(new Date());
-    console.log(currentTime)
-    // Use date from the database which is already in IST
-    const bidStartTime = new Date(date);
-    const bidEndTime = new Date(date);
+
+    const baseDate = convertUtcToIst(new Date(date)); // Now in IST
+
+    const bidStartTime = new Date(baseDate);
+    const bidEndTime = new Date(baseDate);
 
     const [startHours, startMinutes] = startbidTime.split(':');
-    bidStartTime.setHours(parseInt(startHours, 10));
-    bidStartTime.setMinutes(parseInt(startMinutes, 10));
+    bidStartTime.setHours(parseInt(startHours, 10), parseInt(startMinutes, 10), 0, 0);
 
     const [endHours, endMinutes] = endbidTime.split(':');
-    bidEndTime.setHours(parseInt(endHours, 10));
-    bidEndTime.setMinutes(parseInt(endMinutes, 10));
+    bidEndTime.setHours(parseInt(endHours, 10), parseInt(endMinutes, 10), 0, 0);
 
-    if (currentTime < bidStartTime) {
-        return 'future';
-    } else if (currentTime >= bidStartTime && currentTime <= bidEndTime) {
-        return 'live';
-    } else {
-        return 'past'; // Optional: handle past bids
-    }
+    if (currentTime < bidStartTime) return 'future';
+    else if (currentTime >= bidStartTime && currentTime <= bidEndTime) return 'live';
+    else return 'past';
 };
+
+
 
 // Get Future Bids
 export const getFutureBids = async (req, res) => {

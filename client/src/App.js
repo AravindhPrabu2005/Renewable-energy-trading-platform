@@ -11,6 +11,7 @@ import Future from './pages/futuretime/FutureBid';
 import Live from './pages/livepage/livepage';
 import Marketlive from './pages/marketplace/market';
 import Aboutin from './pages/about/about';
+import Companydashboarder from './pages/companydash/companydashboard';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
  <Route path="/login" element={<Loginpage />} />
  <Route path='/signup' element={<Registerpage/>}/>
  <Route path='/userreg' element={<Registerasuser/>}/>
- <Route path='/companydashboard' element={<CompanyDashboard/>}/>
+ <Route path='/companydashboard' element={<Companydashboarder/>}/>
  <Route path='/futurebiting' element ={<Future />} />
  <Route path='/livebiting' element ={<Live />} />
  <Route path='/marketplace' element={<Marketlive />} />

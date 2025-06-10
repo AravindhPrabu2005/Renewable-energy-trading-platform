@@ -13,18 +13,18 @@ import bidSocket from './socket/bidSocket.js';
 dotenv.config();
 const app = express();
 const server = http.createServer(app);
-const io = new socketIo(server, { cors: { origin: 'https://energytrade.netlify.app' } });
+const io = new socketIo(server, { cors: { origin: process.env.CLIENT_URL } });
 
 /* Middleware */
 app.use(express.json());
 app.use(cors({
-  origin: 'https://energytrade.netlify.app',
+  origin: process.env.CLIENT_URL,
   credentials: true
 }));
 app.use(cookieParser());
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://energytrade.netlify.app'); // Replace with your actual frontend URL
+  res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_URL);
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   next();
 });
@@ -52,7 +52,7 @@ mongoose.connection.on("disconnected", () => {
 });
 
 /* Start the server */
-const PORT = 8800;
+const PORT = 8000;
 server.listen(PORT, () => {
   connect();
   console.log(`Server running on port ${PORT}`);

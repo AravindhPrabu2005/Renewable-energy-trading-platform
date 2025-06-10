@@ -1,11 +1,14 @@
+import { Navbar } from "react-bootstrap"
 import CompanyDash from "../../components/Company/CompanyDashboard"
 
 
-const companydashboard = () =>{
-    return(
-
-        <CompanyDash />
+const Companydashboarder = () => {
+    return (
+        <>
+            <Navbar />
+            <CompanyDash />
+        </>
     )
 }
 
-export default companydashboard
+export default Companydashboarder

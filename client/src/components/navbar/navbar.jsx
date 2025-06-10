@@ -67,8 +67,11 @@ const NavbarComponent = () => {
                             <Nav.Link href="/" className=' bgfont'>Home</Nav.Link>
                             <Nav.Link href="/about" className=' bgfont'>About</Nav.Link>
                             <Nav.Link href="/marketplace" className=' bgfont'>Marketplace</Nav.Link>
+                            {/* These two are for the "user" usertype */}
                             <Nav.Link href="/livebiting" className=' bgfont'>live Bidding</Nav.Link>
                             <Nav.Link href="/futurebiting" className=' bgfont'>Future Bidding</Nav.Link>
+                            {/* This one is for the "company" usertype */}
+                            <Nav.Link href="/companydashboard" className=' bgfont'>Company Dashboard</Nav.Link>
                             <Nav.Link href="/contact" className=' bgfont'>Contact</Nav.Link>
                         </Nav>
                         <div className="navbar-buttons">

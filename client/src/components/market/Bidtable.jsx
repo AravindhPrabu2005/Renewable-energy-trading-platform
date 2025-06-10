@@ -10,7 +10,7 @@ const BidTable = () => {
     useEffect(() => {
         const fetchBids = async () => {
             try {
-                const response = await axiosInstance.get('/api/bids/getallbids');  // Fetch bids from the backend
+                const response = await axiosInstance.get('/api/bids/getallbids'); 
                 setBids(response.data);
             } catch (error) {
                 console.error('Error fetching bids:', error);

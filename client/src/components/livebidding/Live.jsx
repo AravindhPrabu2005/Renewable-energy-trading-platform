@@ -16,7 +16,7 @@ const Live = () => {
     useEffect(() => {
         const fetchLiveBids = async () => {
             try {
-                const response = await axiosInstance.get('/api/products/live');
+                const response = await axiosInstance.get('/api/products/all');
                 setLiveBids(response.data);
             } catch (err) {
                 console.error(err);
@@ -28,7 +28,7 @@ const Live = () => {
     const handleJoin = async (productId) => {
         try {
             // Fetch the product details to check its status
-            const productResponse = await axios.get(`https://energy-backend-ww4p.onrender.com/api/products/${productId}`);
+            const productResponse = await axiosInstance.get(`/api/products/${productId}`);
             const product = productResponse.data;
 
             if (product.status === 'end') {
